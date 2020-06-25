@@ -1,0 +1,2 @@
+nc host pors
+os.system("cat flag")
